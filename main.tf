@@ -114,3 +114,25 @@ resource "aws_instance" "AlbertLeng-Webserver-2" {
     Name = "AlbertLeng-Webserver-2"
   }
 }
+
+resource "aws_instance" "albertleng_ansible_server" {
+  ami                         = "ami-0c02fb55956c7d316"
+  instance_type               = "t2.micro"
+  key_name                    = "albert-ollama-test"
+  associate_public_ip_address = true
+  subnet_id                   = aws_subnet.albertleng_subnet.id
+  vpc_security_group_ids      = [
+    aws_security_group.albertleng_security_group.id
+  ]
+
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo yum update -y
+              sudo yum install -y python3-pip
+              sudo python3 -m pip install --user ansible
+              EOF
+
+  tags = {
+    Name = "albertleng-ansible-server"
+  }
+}
