@@ -130,6 +130,9 @@ resource "aws_instance" "albertleng_ansible_server" {
               sudo yum update -y
               sudo yum install -y python3-pip
               sudo python3 -m pip install --user ansible
+              echo 'export PATH=$PATH:~/.local/bin' >> ~/.bash_profile
+              source ~/.bash_profile
+              ansible --version
               EOF
 
   tags = {
