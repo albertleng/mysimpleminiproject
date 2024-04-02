@@ -5,7 +5,7 @@
 
   tasks:
     - name: Install Apache package
-      yum:
+      dnf:
         name: httpd
         state: present
 
