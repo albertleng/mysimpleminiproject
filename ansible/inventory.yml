@@ -1,0 +1,9 @@
+[webservers]
+3.235.188.2
+3.236.11.88
+
+[pri-webserver]
+3.235.188.2
+
+[sec-webserver]
+3.236.11.88
